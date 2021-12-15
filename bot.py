@@ -32,14 +32,14 @@ Use /help Commands For More.`
 CMDS_TEXT = """
 `Here It is The List of Commamds and Its usage.`
 
-- /song - This Command is For Downloading Songs. 
+- Downloading Songs. 
 - /lyrics - This Command is For Scrapping Lyrics of a Song. 
 - /video - This Command is For Downloading Videos. 
 - Also You Can search videos via inline Mode on Bot. 
 
 `Exmples For Both Those Commands.`
 
-- /song [song name] or [youTube link]. 
+- [song name] or [youTube link]. 
   [/song Alone]. 
 - /lyrics [song name]. 
   [/lyrics alone] 
@@ -49,14 +49,12 @@ CMDS_TEXT = """
 """
 
 ABOUT_TEXT = """
-- **Bot :** `Song Downloader`
-- **Creator :** [MR-JINN-OF-TG](https://Github.com/MR-JINN-OF-TG)
-- **Support :** [CLICK HERE](https://telegram.me/NAZRIYASUPPORT)
-- **Source :** [CLICK HERE](https://github.com/MR-JINN-OF-TG/Song-Downloader-Bot)
-- **Language :** [Python3](https://python.org)
-- **Library :** [Pyrogram](https://pyrogram.org)
-- **Server :** [Heroku](https://heroku.com)
+- **Bot**
+ഹായ 🙋‍♂️!!
 
+ഞാൻ [♠️ 𝑨𝒍𝒍 𝑰𝒏 𝑶𝒏𝒆 𝑮𝒓𝒐𝒖𝒑](https://t.me/tvseriezzz) എന്ന ഗ്രൂപ്പിൽ മൂവീസ് കൊടുക്കുന്ന ബോട്ട് ആണ് 
+ 
+എന്നെ മറ്റു ഗ്രൂപ്പിൽ ഒന്നും ഉപയോഗിക്കാൻ കഴിയുകയില്ല.
 """
 START_BUTTONS = InlineKeyboardMarkup(
         [[
@@ -106,7 +104,7 @@ async def cb_handler(bot, update):
         await update.message.delete()
 
         
-@Bot.on_message(filters.private & filters.command(["start"]))
+@Bot.on_message(filters.private & filters.text)
 async def start(bot, update):
     if not await db.is_user_exist(update.from_user.id):
         await db.add_user(update.from_user.id)  
@@ -150,7 +148,7 @@ def time_to_seconds(time):
 
 
 
-@Bot.on_message(filters.command(['song']))
+@Bot.on_message(filters.text)
 def a(client, message):
     query = ''
     for i in message.command[1:]:
@@ -180,28 +178,28 @@ def a(client, message):
             #     m.edit("Exceeded 30mins cap")
             #     return
 
-            performer = f"[@NazriyaSongBot]" 
+            performer = f"[𝕸𝖚𝖘𝖎𝖈]" 
             thumb_name = f'thumb{message.message_id}.jpg'
             thumb = requests.get(thumbnail, allow_redirects=True)
             open(thumb_name, 'wb').write(thumb.content)
 
         except Exception as e:
             print(e)
-            m.edit('**No Results Found With This Data!**')
+            m.edit('𝐅𝐨𝐮𝐧𝐝 𝐍𝐨𝐭𝐡𝐢𝐧𝐠. 𝐓𝐫𝐲 𝐂𝐡𝐚𝐧𝐠𝐢𝐧𝐠 𝐓𝐡𝐞 𝐒𝐩𝐞𝐥𝐥𝐢𝐧𝐠 𝐀 𝐋𝐢𝐭𝐭𝐥𝐞 😐...')
             return
     except Exception as e:
         m.edit(
-            "**Enter The Song Name with /song command.!**"
+            "❎ 𝐹𝑜𝑢𝑛𝑑 𝑁𝑜𝑡ℎ𝑖𝑛𝑔. 𝐒𝐨𝐫𝐫𝐲.\n\n𝖯𝗅𝖾𝖺𝗌𝖾 𝖳𝗋𝗒 𝖠𝗀𝖺𝗂𝗇 𝖮𝗋 𝖲𝖾𝖺𝗋𝖼𝗁 𝖺𝗍 Google.com 𝖥𝗈𝗋 𝖢𝗈𝗋𝗋𝖾𝖼𝗍 𝖲𝗉𝖾𝗅𝗅𝗂𝗇𝗀 𝗈𝖿 𝗍𝗁𝖾 𝙎𝙤𝙣𝙜.\n\nEg.` Believer ´"
         )
         print(str(e))
         return
-    m.edit("`AM...Uploading To TG now... Please Wait...`")
+    m.edit("Uploading Your File,Please Wait for Some Seconds...`[🎧](https://te.legra.ph/file/c3dce12116a0a8af80c93.jpg)")
     try:
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             info_dict = ydl.extract_info(link, download=False)
             audio_file = ydl.prepare_filename(info_dict)
             ydl.process_info(info_dict)
-        rep = f'❍📖 <b>Title:</b> <a href="{link}">{title}</a>\n❍⌚ <b>Duration:</b> <code>{duration}</code>\n❍📤 <b>Uploaded By:</b> <a href="https://t.me/NazriyaSongBot">NazriyaSongBot</a>'
+        rep = f'🎧 𝗧𝗶𝘁𝘁𝗹𝗲 : <a href="{link}">{title}</a>\n⏳ 𝗗𝘂𝗿𝗮𝘁𝗶𝗼𝗻 : {duration}\n👀 𝗩𝗶𝗲𝘄𝘀 : {views}\n\n📮 𝗕𝘆: {message.from_user.mention()}\n<b>📤 𝗕𝘆 :- <a href="https://t.me/tvseriezzz_music">𝑨𝒍𝒍 𝑰𝒏 𝑶𝒏𝒆 𝑮𝒓𝒐𝒖𝒑 𝕸𝖚𝖘𝖎𝖈</a>'
         secmul, dur, dur_arr = 1, 0, duration.split(':')
         for i in range(len(dur_arr)-1, -1, -1):
             dur += (int(dur_arr[i]) * secmul)
@@ -209,7 +207,7 @@ def a(client, message):
         message.reply_audio(audio_file, caption=rep, parse_mode='HTML',quote=False, title=title, duration=dur, performer=performer, thumb=thumb_name)
         m.delete()
     except Exception as e:
-        m.edit('**Something Went Wrong Report This at @NAZRIYASUPPORT!!**')
+        m.edit('**An internal Error Occured, Report This @MrC_VENOM_2!!**[🙂](https://te.legra.ph/file/c3dce12116a0a8af80c93.jpg)')
         print(e)
     try:
         os.remove(audio_file)
