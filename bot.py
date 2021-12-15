@@ -20,7 +20,7 @@ Bot = Client(
     bot_token = os.environ["BOT_TOKEN"],
     api_id = int(os.environ["API_ID"]),
     api_hash = os.environ["API_HASH"],
-    PICS = os.environ["PICS"]
+    START_IMG = os.environ["START_IMG"]
 )
 
 db = Database()
@@ -85,7 +85,7 @@ ABOUT_BUTTONS = InlineKeyboardMarkup(
 async def cb_handler(bot, update):
     if update.data == "home":
         await update.message.reply_photo(
-            photo=random.choice(PICS),
+            photo=Config.START_IMG,
             caption=START_TEXT.format(update.from_user.mention),
             reply_markup=START_BUTTONS,
             disable_web_page_preview=True
@@ -112,7 +112,7 @@ async def start(bot, update):
         await db.add_user(update.from_user.id)  
 
     await update.reply_photo(
-        photo=random.choice(PICS),
+        photo=Config.START_IMG,
         caption=START_TEXT.format(update.from_user.mention),
         disable_web_page_preview=True,
 	reply_markup=START_BUTTONS
