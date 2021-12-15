@@ -87,19 +87,19 @@ async def cb_handler(bot, update):
             photo=Config.START_IMG,
             caption=START_TEXT.format(update.from_user.mention),
             reply_markup=START_BUTTONS,
-            disable_web_page_preview=True
+            parse_mode='html'
         )
     elif update.data == "cmds":
         await update.message.edit_text(
             text=CMDS_TEXT,
             reply_markup=CMDS_BUTTONS,
-            disable_web_page_preview=True
+            parse_mode='html'
         )
     elif update.data == "about":
         await update.message.edit_text(
             text=ABOUT_TEXT,
             reply_markup=ABOUT_BUTTONS,
-            disable_web_page_preview=True
+            parse_mode='html'
         )
     else:
         await update.message.delete()
@@ -113,7 +113,7 @@ async def start(bot, update):
     await update.reply_photo(
         photo=Config.START_IMG,
         caption=START_TEXT.format(update.from_user.mention),
-        disable_web_page_preview=True,
+        parse_mode='html',
 	reply_markup=START_BUTTONS
     )
 
@@ -121,7 +121,7 @@ async def start(bot, update):
 async def about(bot, update):
     await update.reply_text(
         text=ABOUT_TEXT,
-        disable_web_page_preview=True,
+        parse_mode='html',
         reply_markup=ABOUT_BUTTONS
     )
 
