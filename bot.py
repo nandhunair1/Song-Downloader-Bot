@@ -19,8 +19,7 @@ Bot = Client(
     "Song Downloader Bot",
     bot_token = os.environ["BOT_TOKEN"],
     api_id = int(os.environ["API_ID"]),
-    api_hash = os.environ["API_HASH"],
-    START_IMG = os.environ["START_IMG"]
+    api_hash = os.environ["API_HASH"]
 )
 
 db = Database()
